@@ -1,5 +1,5 @@
 # CalciumDenoising
-
+[Python] Denoising Images extracted using Calcium Imaging confocal microscopy from interstitial cells of Cajal (ICC).
 ## Pre-requisite
 - Ubuntu 18.04 / Windows 7 or later
 
