@@ -1,0 +1,13 @@
+Outputs
+Outputs/sum_signal1d
+Outputs/gaussian_1d
+Outputs/gradient_2ndOrder
+Outputs/zero_crossing
+Outputs/denoised_image
+Outputs/enhanced_image
+Outputs/median_image
+Outputs/enhanced_change_image
+Outputs/median_image2
+*.jpg
+*.png
+*.tif

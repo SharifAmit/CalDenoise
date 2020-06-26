@@ -32,18 +32,31 @@ def gradient2ndOrder(gauss_img,img_name):
 
 def zeroCrossing(grad_img,img_name):
     img_no_neg = np.where(grad_img!=0,grad_img,-500)
-    img_no_neg2 = np.where(img_no_neg ==-500,img_no_neg, 0)
-    plt.plot(img_no_neg2)
+    #img_no_neg2 = np.where(img_no_neg ==-500,img_no_neg, 0)
+    plt.plot(img_no_neg)
     filename = 'Outputs/zero_crossing/'+img_name+'.png'
     plt.savefig(filename)
-    return img_no_neg2
+    return img_no_neg
 
-def denoisedImage(img,img_name):
+def denoisedImage(img,img_no_neg,img_name):
     np_img = np.asarray(img)
-    y = np_img.shape[1]
+
+    a = np.where(img_no_neg==-500)
+    a = np.array(a)
+    best_noise = a[:,0] 
+    lower_bound = best_noise[0]-10
+    upper_bound = best_noise[0]+10
+    if lower_bound<0:
+        lower_bound = 0
+    if upper_bound>=np_img.shape[0]:
+        upper_bound == np_img.shape[0]-1
+
+    
+    
     np_sum = np.sum(np_img, axis=1)
-    np_img3 = np_sum[438:458,0]
-    window=np_img3/y
+    np_img3 = np_sum[lower_bound:upper_bound,0]
+
+    window= np_img3/np_img.shape[1]
     avg = np.average(window)                                                                                                                                                           
     im_np_subed = np_img - (avg -2)
     im_np_subed_good = np.where(im_np_subed>0,im_np_subed,0)
@@ -52,14 +65,14 @@ def denoisedImage(img,img_name):
     im_np_img.save(filename)
     return im_np_img
 
-def enhanched(img,img_name):
-    enhanced_img = ImageEnhance.Contrast(img).enhance(3)
+def enhanched(img,filter_size,img_name):
+    enhanced_img = ImageEnhance.Contrast(img).enhance(filter_size)
     filename = 'Outputs/enhanced_image/'+img_name+'.png'
     enhanced_img.save(filename)
     return enhanced_img
 
-def median_subtracting_img(img,img_name):
-    median_img = img.filter(ImageFilter.MedianFilter(size=15))
+def median_subtracting_img(img,filter_size,img_name):
+    median_img = img.filter(ImageFilter.MedianFilter(size=filter_size))
     filename = 'Outputs/median_image/'+img_name+'.png'
     median_img.save(filename)
 
@@ -70,17 +83,21 @@ def median_subtracting_img(img,img_name):
     e = np.array(xy)
     k = e.shape[1]
 
-    for i in range(k):
+    if k==3:
+        for i in range(k):
+            np_enhance[e[0,i],e[1,i],0] = 0
+            np_enhance[e[0,i],e[1,i],1] = 0
+            np_enhance[e[0,i],e[1,i],2] = 0
+    else:
         np_enhance[e[0,i],e[1,i],0] = 0
-        np_enhance[e[0,i],e[1,i],1] = 0
-        np_enhance[e[0,i],e[1,i],2] = 0
+
     enhanced_changed_img = Image.fromarray(np_enhance)
     filename_e = 'Outputs/enhanced_change_image/'+img_name+'.png'
     enhanced_changed_img.save(filename_e)
     return enhanced_changed_img
 
-def median_image(img,img_name):
-    median_img_l2 = img.filter(ImageFilter.MedianFilter(size=3))
+def median_image(img,filter_size,img_name):
+    median_img_l2 = img.filter(ImageFilter.MedianFilter(size=filter_size))
     filename = 'Outputs/median_image2/'+img_name+'.png'
     median_img_l2.save(filename)
 
@@ -89,6 +106,9 @@ if __name__ == "__main__":
     parser.add_argument('--dir', type=str, required=False, help='path/to/directory',default='Images')
     args = parser.parse_args()
     print(args.dir)
+    dir_names = ['Outputs','Outputs/sum_signal1d','Outputs/gaussian_1d','Outputs/gradient_2ndOrder','Outputs/zero_crossing','Outputs/denoised_image','Outputs/enhanced_image','Outputs/median_image','Outputs/enhanced_change_image','Outputs/median_image2']
+    if not os.path.exists(dir_names):
+        os.makedirs(dir_names)
     for i in os.listdir(args.dir):
         
         img_name, _ = i.split('.')
@@ -98,8 +118,8 @@ if __name__ == "__main__":
         sigma = 30
         gauss_img = gaussain1d(np_sum,sigma,img_name)
         grad_img = gradient2ndOrder(gauss_img,img_name)
-        img_no_neg2 = zeroCrossing(grad_img,img_name)
-        im_np_img = denoisedImage(img,img_name)
+        img_no_neg = zeroCrossing(grad_img,img_name)
+        im_np_img = denoisedImage(img,img_no_neg,img_name)
         enhanced_img = enhanched(im_np_img,img_name)
         enhanced_changed_img = median_subtracting_img(enhanced_img,img_name)
-        median_image(enhanced_changed_img,img_name)
+        median_image(enhanced_changed_img,large_median_filter,img_name)
