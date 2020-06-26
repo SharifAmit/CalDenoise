@@ -25,14 +25,27 @@ sudo pip3 -r requirements.txt
 ```
 
 ### Run the following command in your Command prompt/Terminal
+
+
 ```
 python3 denoising_pipeline.py --dir=Images --enhance=3 --large_median=15 --small_median=3
 ```
-- There are different flags to choose from. Not all of them are mandatory
+- There are different flags to choose from. Not all of them are mandatory.
+
+- For ICC-MY we use the following flags.
 
 ```
    '--enhance', type=int, default=3
    '--small_median', type=int, default=3
    '--large_median', type=int, default=15 
+   '--dir', type=str, required=True, help='path/to/images'
+```
+
+- For ICC-IM we use the following flags.
+
+```
+   '--enhance', type=int, default=3
+   '--small_median', type=int, default=3
+   '--large_median', type=int, default=3 
    '--dir', type=str, required=True, help='path/to/images'
 ```
