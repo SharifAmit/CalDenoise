@@ -123,7 +123,7 @@ if __name__ == "__main__":
     parser.add_argument('--small_median',type=int, required=False, help='size of small median filter', default=3)
     parser.add_argument('--enhance',type=int, required=False, help='size of enhance filter', default=3)
     parser.add_argument('--SOL',type=bool, required=False, help='streak of light required', default=False)
-    parser.add_argument('--threshold_SOL', type=int, required=False, help='threhsold for streak of light', default=80)
+    parser.add_argument('--threshold_SOL', type=int, required=False, help='threhsold for streak of light', default=65)
     
     args = parser.parse_args()
     #print(args.dir)
