@@ -107,6 +107,14 @@ def median_image(img,filter_size,img_name):
     median_img_l2 = img.filter(ImageFilter.MedianFilter(size=filter_size))
     filename = 'Outputs/median_image2/'+img_name+'.png'
     median_img_l2.save(filename)
+    return median_img_l2
+def streak_of_light(median_img_l2,threshold,img_name):
+    im = median_img_l2.point(lambda p: p > threshold and 255)  
+    thres_im = np.array(im)
+    main_im = np.array(median_img_l2)
+    main_im[thres_im==0] = 0
+    thres_out_img = Image.fromarray(main_im)
+    thres_out_img.save('Outputs/streak_of_light/'+img_name+'.png')  
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -114,11 +122,13 @@ if __name__ == "__main__":
     parser.add_argument('--large_median',type=int, required=False, help='size of large median filter', default=15)
     parser.add_argument('--small_median',type=int, required=False, help='size of small median filter', default=3)
     parser.add_argument('--enhance',type=int, required=False, help='size of enhance filter', default=3)
-
+    parser.add_argument('--SOL',type=bool, required=False, help='streak of light required', default=False)
+    parser.add_argument('--threshold_SOL', type=int, required=False, help='threhsold for streak of light', default=80)
+    
     args = parser.parse_args()
     #print(args.dir)
     
-    dir_names = ['Outputs','Outputs/sum_signal1d','Outputs/gaussian_1d','Outputs/gradient_2ndOrder','Outputs/zero_crossing','Outputs/denoised_image','Outputs/enhanced_image','Outputs/median_image','Outputs/enhanced_change_image','Outputs/median_image2']
+    dir_names = ['Outputs','Outputs/sum_signal1d','Outputs/gaussian_1d','Outputs/gradient_2ndOrder','Outputs/zero_crossing','Outputs/denoised_image','Outputs/enhanced_image','Outputs/median_image','Outputs/enhanced_change_image','Outputs/median_image2','Outputs/streak_of_light']
     for d in dir_names:
         if not os.path.exists(d):
             os.makedirs(d)
@@ -137,4 +147,6 @@ if __name__ == "__main__":
         im_np_img = denoisedImage(img,img_no_neg,img_name)
         enhanced_img = enhanched(im_np_img,args.enhance,img_name)
         enhanced_changed_img = median_subtracting_img(enhanced_img,args.small_median,img_name)
-        median_image(enhanced_changed_img,args.large_median,img_name)
+        median_image_2 = median_image(enhanced_changed_img,args.large_median,img_name)
+        if args.SOL==True:
+            streak_of_light(median_image_2,args.threshold_SOL,img_name)
