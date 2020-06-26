@@ -24,7 +24,7 @@ sudo apt-get install pip3 python3-dev
 sudo pip3 -r requirements.txt
 ```
 
-### Run the following command in your
+### Run the following command in your Command prompt/Terminal
 ```
 python3 denoising_pipeline.py --dir=Images --enhance=3 --large_median=15 --small_median=3
 ```
