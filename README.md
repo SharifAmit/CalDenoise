@@ -23,6 +23,7 @@ sudo apt-get install pip3 python3-dev
 ```
 sudo pip3 -r requirements.txt
 ```
+- Create a directory called "Images" and put the ICC image files in the directory.
 
 ### Run the following command in your Command prompt/Terminal
 
