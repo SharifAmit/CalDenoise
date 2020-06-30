@@ -136,7 +136,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument('--dir', type=str, required=True, help='path/to/directory',default='Images')
-    parser.add_argument('--large_median',type=int, required=False, help='size of large median filter', default=15)
+    parser.add_argument('--large_median',type=int, required=False, help='size of large median filter', default=3)
     parser.add_argument('--small_median',type=int, required=False, help='size of small median filter', default=3)
     parser.add_argument('--enhance',type=int, required=False, help='size of enhance filter', default=3)
     parser.add_argument('--SOL',type=bool, required=False, help='streak of light required', default=False)
@@ -145,9 +145,10 @@ if __name__ == "__main__":
     parser.add_argument('--plot_signals',type=bool, required=False, help='Plot the signals for sum,gaussian,gradient,zero_crossings', default=False)
     parser.add_argument('--interm',type=bool, required=False, help='save intermediate images', default=False)
     parser.add_argument('--median_w_SOL',type=bool, required=False, help='generate both SOL and without SOL images', default=False)
-
+    parser.add_argument('--print_exec_time',type=bool,required=False,default=False)
     args = parser.parse_args()
-    start_time = time.time()
+    if args.print_exec_time==True:
+        start_time = time.time()
     dir_names = ['Outputs']
     if args.median_w_SOL==True:
         dir_names.append('Outputs/streak_of_light','Outputs/median_image2')
@@ -181,6 +182,6 @@ if __name__ == "__main__":
         median_image_2 = median_image(enhanced_changed_img,args.large_median,img_name,args.SOL)
         if args.SOL==True:
             streak_of_light(median_image_2,args.threshold_SOL,img_name)
-
-    end_time = time.time()
-    print('Execution Time: ',(end_time-start_time)/(len(os.listdir(args.dir))))
+    if args.print_exec_time==True:
+        end_time = time.time()
+        print('Execution Time: ',(end_time-start_time)/(len(os.listdir(args.dir))))
