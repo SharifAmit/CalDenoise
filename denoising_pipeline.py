@@ -54,7 +54,7 @@ def zeroCrossing(grad_img,img_name,plot):
         plt.close()
     return img_no_neg
 
-def denoisedImage(img,img_no_neg,img_name):
+def denoisedImage(img,img_no_neg,img_name,interm):
     np_img = np.asarray(img) 
     a = np.where(img_no_neg==-500)
     a = np.array(a)
@@ -78,20 +78,24 @@ def denoisedImage(img,img_no_neg,img_name):
     im_np_subed = np_img - (avg -2)
     im_np_subed_good = np.where(im_np_subed>0,im_np_subed,0)
     im_np_img = Image.fromarray(im_np_subed_good.astype('uint8'))
-    filename = 'Outputs/denoised_image/'+img_name+'.png'
-    im_np_img.save(filename)
+    if interm==True:
+        
+        filename = 'Outputs/denoised_image/'+img_name+'.png'
+        im_np_img.save(filename)
     return im_np_img
 
-def enhanched(img,filter_size,img_name):
+def enhanched(img,filter_size,img_name,interm):
     enhanced_img = ImageEnhance.Contrast(img).enhance(filter_size)
-    filename = 'Outputs/enhanced_image/'+img_name+'.png'
-    enhanced_img.save(filename)
+    if interm==True:
+        filename = 'Outputs/enhanced_image/'+img_name+'.png'
+        enhanced_img.save(filename)
     return enhanced_img
 
-def median_subtracting_img(img,filter_size,img_name):
+def median_subtracting_img(img,filter_size,img_name,interm):
     median_img = img.filter(ImageFilter.MedianFilter(size=filter_size))
-    filename = 'Outputs/median_image/'+img_name+'.png'
-    median_img.save(filename)
+    if interm==True:
+        filename = 'Outputs/median_image/'+img_name+'.png'
+        median_img.save(filename)
 
     np_median = np.asarray(median_img)
     xy = np.where(np_median[:,:,0]==0)
@@ -107,16 +111,18 @@ def median_subtracting_img(img,filter_size,img_name):
             np_enhance[e[0,i],e[1,i],2] = 0
     else:
         np_enhance[e[0,0],e[1,0],0] = 0
-    
     enhanced_changed_img = Image.fromarray(np_enhance)
-    filename_e = 'Outputs/enhanced_change_image/'+img_name+'.png'
-    enhanced_changed_img.save(filename_e)
+    if interm==True:
+        
+        filename_e = 'Outputs/enhanced_change_image/'+img_name+'.png'
+        enhanced_changed_img.save(filename_e)
     return enhanced_changed_img
 
-def median_image(img,filter_size,img_name):
+def median_image(img,filter_size,img_name,SOL):
     median_img_l2 = img.filter(ImageFilter.MedianFilter(size=filter_size))
-    filename = 'Outputs/median_image2/'+img_name+'.png'
-    median_img_l2.save(filename)
+    if SOL==False:
+        filename = 'Outputs/median_image2/'+img_name+'.png'
+        median_img_l2.save(filename)
     return median_img_l2
 def streak_of_light(median_img_l2,threshold,img_name):
     im = median_img_l2.point(lambda p: p > threshold and 255)  
@@ -137,10 +143,26 @@ if __name__ == "__main__":
     parser.add_argument('--threshold_SOL', type=int, required=False, help='threhsold for streak of light', default=65)
     parser.add_argument('--gradient_filter',type=str, required=False, help='Either Laplacian or Sobel', default='laplacian')
     parser.add_argument('--plot_signals',type=bool, required=False, help='Plot the signals for sum,gaussian,gradient,zero_crossings', default=False)
+    parser.add_argument('--interm',type=bool, required=False, help='save intermediate images', default=False)
+    parser.add_argument('--median_w_SOL',type=bool, required=False, help='generate both SOL and without SOL images', default=False)
 
     args = parser.parse_args()
     start_time = time.time()
-    dir_names = ['Outputs','Outputs/sum_signal1d','Outputs/gaussian_1d','Outputs/gradient_2ndOrder','Outputs/zero_crossing','Outputs/denoised_image','Outputs/enhanced_image','Outputs/median_image','Outputs/enhanced_change_image','Outputs/median_image2','Outputs/streak_of_light']
+    dir_names = ['Outputs']
+    if args.median_w_SOL==True:
+        dir_names.append('Outputs/streak_of_light','Outputs/median_image2')
+
+    else:
+        if args.SOL==True:
+            dir_names.append('Outputs/streak_of_light')
+        elif args.SOL==False:
+            dir_names.append('Outputs/median_image2')
+
+
+    if args.interm==True:
+        dir_names.append('Outputs/denoised_image','Outputs/enhanced_image','Outputs/median_image','Outputs/enhanced_change_image')
+    if args.plot_signals==True:
+        dir_names.append('Outputs/sum_signal1d','Outputs/gaussian_1d','Outputs/gradient_2ndOrder','Outputs/zero_crossing')
     for d in dir_names:
         if not os.path.exists(d):
             os.makedirs(d)
@@ -153,10 +175,10 @@ if __name__ == "__main__":
         gauss_img = gaussain1d(np_sum,sigma,img_name,args.plot_signals)
         grad_img = gradient2ndOrder(gauss_img,img_name,args.gradient_filter,args.plot_signals)
         img_no_neg = zeroCrossing(grad_img,img_name,args.plot_signals)
-        im_np_img = denoisedImage(img,img_no_neg,img_name)
-        enhanced_img = enhanched(im_np_img,args.enhance,img_name)
-        enhanced_changed_img = median_subtracting_img(enhanced_img,args.small_median,img_name)
-        median_image_2 = median_image(enhanced_changed_img,args.large_median,img_name)
+        im_np_img = denoisedImage(img,img_no_neg,img_name,args.interm)
+        enhanced_img = enhanched(im_np_img,args.enhance,img_name,args.interm)
+        enhanced_changed_img = median_subtracting_img(enhanced_img,args.small_median,img_name,args.interm)
+        median_image_2 = median_image(enhanced_changed_img,args.large_median,img_name,args.SOL)
         if args.SOL==True:
             streak_of_light(median_image_2,args.threshold_SOL,img_name)
 
