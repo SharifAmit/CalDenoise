@@ -60,3 +60,22 @@ python3 denoising_pipeline.py --dir=Images --enhance=3 --large_median=3 --small_
    '--threshold_SOL', type=int, default=65
    '--SOL', type=bool, required=False, default=False
 ```
+- For using sobel instead of Laplacian for gradient use the following flag.
+
+```
+   '--gradient_filter',type=str, required=False, help='Either Laplacian or Sobel', default='laplacian'
+```
+- For saving plots of intermediate operations use the following flag.
+```
+   '--plot_signals',type=bool, required=False, help='Plot the signals for sum,gaussian,gradient,zero_crossings', default=False
+```
+- For creating images for intermediate steps use the following flag.
+
+```
+   '--interm',type=bool, required=False, help='save intermediate images', default=False
+```
+- For saving both images with and without streaks of light use the following flag.
+
+```
+   '--median_w_SOL',type=bool, required=False, help='generate both SOL and without SOL images', default=False
+```
