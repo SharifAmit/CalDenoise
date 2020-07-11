@@ -12,7 +12,7 @@ https://pip.pypa.io/en/stable/installing/
 ```
 https://www.python.org/downloads/release/python-377/
 ```
-- Install Python (Ubuntu)
+- Install Python (Linux/Ubuntu)
 
 ```
 sudo apt-get install pip3 python3-dev
