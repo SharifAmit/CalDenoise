@@ -38,13 +38,13 @@ mkdir Images
 For ICC-MY we use the following command 
 
 ```
-python3 denoising_pipeline.py --dir='path/to/images' --enhance=3 --large_median=15 --small_median=3
+python3 denoising_pipeline.py --dir=Images --enhance=3 --large_median=15 --small_median=3
 ```
 
 For ICC-IM we use the following command 
 
 ```
-python3 denoising_pipeline.py --dir='path/to/images' --enhance=3 --large_median=3 --small_median=3 --SOL=True --threshold_SOL=65
+python3 denoising_pipeline.py --dir=Images --enhance=3 --large_median=3 --small_median=3 --SOL=True --threshold_SOL=65
 ```
 
 - There are different flags to choose from. Not all of them are mandatory.
