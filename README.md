@@ -23,9 +23,17 @@ sudo apt-get install pip3 python3-dev
 ```
 sudo pip3 -r requirements.txt
 ```
-- Create a directory called "Images" and put the ICC image files in the directory.
+## Cloning Repository and Defining Image directory
 
-### Run the following command in your Command prompt/Terminal
+- Clone this repository using the following command in the terminal/command prompt.
+```
+git clone https://github.com/SharifAmit/CalciumDenoising.git
+```
+- Create a directory called "Images" inside the repository and put the ICC image files in the directory.
+```
+mkdir Images
+```
+## Run the following command in your Command prompt/Terminal
 
 For ICC-MY we use the following command 
 
