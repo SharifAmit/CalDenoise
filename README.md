@@ -1,5 +1,8 @@
 # Denoising Images from Confocal Calcium Imaging
 Denoising Images extracted using Calcium Imaging confocal microscopy. The images are of in-vitro interstitial cells of Cajal (ICC) collected from gastroenterological tracts of mice.
+
+![](img1.png)
+
 ## Pre-requisite
 - Ubuntu 18.04 / Windows 7 or later
 
