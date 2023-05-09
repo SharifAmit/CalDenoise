@@ -10,5 +10,9 @@ Outputs/median_image
 Outputs/enhanced_change_image
 Outputs/median_image2
 Outputs/streak_of_light
+rhythmic/*
+stochastic/*
+weight_file/*
+weight
 *.jpg
 *.tif

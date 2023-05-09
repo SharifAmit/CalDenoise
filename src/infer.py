@@ -120,7 +120,7 @@ if __name__ == "__main__":
     g_local_model.compile(loss='mse', optimizer=opt)
 
     img_shape_g = (32,32,1)
-    g_global_model = coarse_generator(img_shape_g,n_downsampling=2, n_blocks=9, n_channels=1)
+    g_global_model = coarse_generator(img_shape_g,n_downsampling=2, n_blocks=6, n_channels=1)
     g_global_model.load_weights(weight_location+'global_model_'+weight_name+'.h5')
     g_global_model.compile(loss='mse',optimizer=opt)
 
