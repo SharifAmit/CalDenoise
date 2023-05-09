@@ -13,6 +13,7 @@ Outputs/streak_of_light
 rhythmic/*
 stochastic/*
 weight_file/*
+.ipynb_checkpoints/*
 weight
 *.jpg
 *.tif
