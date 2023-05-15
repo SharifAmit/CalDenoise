@@ -131,7 +131,8 @@ if __name__ == "__main__":
         #os.path.join(dirname, files)
         img = Image.open(filename)
         img_arr = np.asarray(img,dtype=np.float32)
-        out_img = strided_crop(img_arr, img_arr.shape[0], img_arr.shape[1], crop_size_h, crop_size_w,stride)
+        out_img = strided_crop(img_arr, img_arr.shape[0], img_arr.shape[1], crop_size_h, crop_size_w,g_global_model,g_local_model,stride)
+        #out_img = strided_crop(img_arr, img_arr.shape[0], img_arr.shape[1], crop_size_h, crop_size_w,stride)
         out_img_sv = ((out_img) * 255.0).astype('uint8')
         img_sv = Image.fromarray(out_img_sv)
         out_im_name =  directories[0]+'/'+filename +'.png'  
