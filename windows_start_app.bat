@@ -1,2 +1,2 @@
 call conda activate ./4conda
-call streamlit run ./src/call_denoise_app.py
+call python ./src/cal_denoise_app.py
