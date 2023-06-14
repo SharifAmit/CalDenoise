@@ -1,0 +1,25 @@
+{
+    "app": {
+        "base_dir": "/Users/hussein/research/calcium-denoising"
+    },
+    "image_processing": {
+        "large_median": 3,
+        "small_median": 3,
+        "enhance": 3,
+        "SOL": false,
+        "threshold_SOL": 65,
+        "gradient_filter": "laplacian",
+        "plot_signals": false,
+        "interm": true,
+        "median_w_SOL": false,
+        "print_exec_time": false
+    },
+    "gan_processing": {
+        "stride": 10,
+        "crop_size": 64,
+        "thresh": 10,
+        "alpha": 1,
+        "type": "rhythmic",
+        "method": ""
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "img_proc": {
+        "stochastic": {
+          "local": "local_model_000090.h5",
+            "global": "global_model_000090.h5"
+        },
+        "rythmic": {
+            "local": "local_model_000090.h5",
+            "global": "global_model_000090.h5"
+        }
+    },
+    "seg": {
+        "stochastic": {
+            "local": "local_model_000090.h5",
+            "global": "global_model_000090.h5"
+        },
+        "rythmic": {
+            "local": "local_model_000090.h5",
+            "global": "global_model_000090.h5"
+        }
+    },
+    "4sm": {
+        "stochastic": {
+            "local": "local_model_000090.h5",
+            "global": "global_model_000090.h5"
+        },
+        "rythmic": {
+            "local": "local_model_000090.h5",
+            "global": "global_model_000090.h5"
+        }
+    }
+}
