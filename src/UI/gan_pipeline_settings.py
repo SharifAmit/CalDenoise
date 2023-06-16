@@ -14,8 +14,8 @@ class GanPipelineSettingsDialog(QDialog):
     self.process=process
     self.apply_flag = apply_flag
     self.setLayout(self.grid_layout)
-    self.setWindowTitle("Image Processing")
-    self.label_2 = QLabel("Image Processing")
+    self.setWindowTitle("GAN Processing")
+    self.label_2 = QLabel("GAN Processing")
     self.label_2.setFont(QFont('Times', 10))
     self.grid_layout.addWidget(self.label_2, 1, 0)
     self.method = method
