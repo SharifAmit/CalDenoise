@@ -5,8 +5,8 @@ conda activate ./4conda
 pip install tensorflow-estimator==2.0.0
 conda install -p ./4conda -y keras=2.3.1
 pip install pillow== 9.0.1
-pip install numpy==1.19.2
-pip install scipy==1.6.2
+pip install numpy==1.22.4
+pip install scipy==1.8.1
 pip uninstall -y scikit-learn
 pip install scikit-learn==0.20.4
 pip install matplotlib==3.5.3
