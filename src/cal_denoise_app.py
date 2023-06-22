@@ -883,8 +883,9 @@ class MyThread(QThread):
     self.method = method
 
   def run(self):
-    import keras.backend.tensorflow_backend as tb
-    tb._SYMBOLIC_SCOPE.value = True
+    if os.getenv('RUN_MODE') != 'STUB':
+      import keras.backend.tensorflow_backend as tb
+      tb._SYMBOLIC_SCOPE.value = True
 
     if (os.path.isdir(self.folder)):
       files = os.listdir(self.folder)
