@@ -5,7 +5,8 @@ channels:
   - defaults
 dependencies:
   - python=3.7
-  - tensorflow-gpu=2.0.0
+  - pip=23.1.2
+#  - tensorflow-gpu=2.0.0
   - tensorflow-estimator=2.0.0
   - tensorboard=2.0.0
   - keras=2.3.1
