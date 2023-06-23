@@ -424,9 +424,13 @@ class ProgressBar(QDialog, UIForm):
 
   def closeEvent(self, a0: QCloseEvent) -> None:
     self.p1.setEnabled(True)
-    path = self.p1.select_path + "/output"
-    self.p1.dirModel_right.ChangeModelPath(path)
-    self.p1.label_current_dir_right.setText(path)
+    if os.path.isdir(self.p1.select_path):
+      pathFolder = self.p1.select_path + "/output"
+    else:
+      pathFolder = str(Path(self.p1.select_path).parent) + "/output"
+
+    self.p1.dirModel_right.ChangeModelPath(pathFolder)
+    self.p1.label_current_dir_right.setText(pathFolder)
     return super().closeEvent(a0)
 
 
@@ -909,7 +913,8 @@ class MyThread(QThread):
       self.end_value.emit(1)
     else:
       if (self.method == Methods.METHOD_IMG_PROC.value):
-        denoise_pipeline.process_single_image(self.folder)
+        filePath = Path(self.folder);
+        denoise_pipeline.process_single_image(str(filePath.parent) + "/" + filePath.name)
       else:
         [local_model, global_model] = gan_pipeline.load_models(self.method)
         gan_pipeline.gan_process_single_image(self.folder, local_model, global_model)
