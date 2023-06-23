@@ -116,7 +116,7 @@ class ImagePipelineSettingsDialog(QDialog):
                   self.QComboBox_gradient_filter.currentText(), self.QCheckBox_plot_signals.isChecked(),
                   self.QCheckBox_interm.isChecked(), self.QCheckBox_median_w_SOL.isChecked(),
                   self.QCheckBox_print_exec_time.isChecked())
-    self.close()
+    self.accept()
 
 
   def save_settings(self):
@@ -151,4 +151,4 @@ class ImagePipelineSettingsDialog(QDialog):
                     self.QComboBox_gradient_filter.currentText(), self.QCheckBox_plot_signals.isChecked(),
                     self.QCheckBox_interm.isChecked(), self.QCheckBox_median_w_SOL.isChecked(),
                     self.QCheckBox_print_exec_time.isChecked())
-    self.close()
+    self.accept()

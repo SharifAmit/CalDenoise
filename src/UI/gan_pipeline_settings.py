@@ -23,8 +23,8 @@ class GanPipelineSettingsDialog(QDialog):
     self.hbox_stride = QHBoxLayout()
     self.Label_stride = QLabel("Stride")
     self.QSpinBox_stride = QSpinBox()
-    self.QSpinBox_stride.setMinimum(1)
-    self.QSpinBox_stride.setMaximum(100)
+    self.QSpinBox_stride.setMinimum(3)
+    self.QSpinBox_stride.setMaximum(48)
     self.QSpinBox_stride.setValue(self.parent().stride)
     self.grid_layout.addWidget(self.Label_stride, 2, 0)
     self.grid_layout.addWidget(self.QSpinBox_stride,2, 1)
@@ -32,6 +32,7 @@ class GanPipelineSettingsDialog(QDialog):
     self.hbox_crop_size = QHBoxLayout()
     self.Label_crop_size = QLabel("Crop Size")
     self.QSpinBox_crop_size = QSpinBox()
+    self.QSpinBox_crop_size.setEnabled(False)
     self.QSpinBox_crop_size.setMinimum(1)
     self.QSpinBox_crop_size.setMaximum(100)
     self.QSpinBox_crop_size.setValue(self.parent().crop_size)
@@ -42,7 +43,7 @@ class GanPipelineSettingsDialog(QDialog):
     self.Label_thresh = QLabel("Threshold")
     self.QSpinBox_thresh = QSpinBox()
     self.QSpinBox_thresh.setMinimum(1)
-    self.QSpinBox_thresh.setMaximum(100)
+    self.QSpinBox_thresh.setMaximum(254)
     self.QSpinBox_thresh.setValue(self.parent().thresh)
     self.grid_layout.addWidget(self.Label_thresh, 4, 0)
     self.grid_layout.addWidget(self.QSpinBox_thresh, 4, 1)
@@ -50,8 +51,9 @@ class GanPipelineSettingsDialog(QDialog):
     self.hbox_alpha = QHBoxLayout()
     self.Label_alpha = QLabel("Alpha")
     self.QSpinBox_alpha = QSpinBox()
-    self.QSpinBox_alpha.setMinimum(1)
-    self.QSpinBox_alpha.setMaximum(100)
+    self.QSpinBox_alpha.setMinimum(0.1)
+    self.QSpinBox_alpha.setMaximum(1)
+    self.QSpinBox_alpha.setSingleStep(0.1)
     self.QSpinBox_alpha.setValue(self.parent().alpha)
     self.grid_layout.addWidget(self.Label_alpha, 5, 0)
     self.grid_layout.addWidget(self.QSpinBox_alpha, 5, 1)
@@ -81,7 +83,7 @@ class GanPipelineSettingsDialog(QDialog):
     settings.init(image_filepath, self.QSpinBox_stride.value(), self.QSpinBox_crop_size.value(),
                   self.QSpinBox_thresh.value(), self.QSpinBox_alpha.value(),
                   self.QComboBox_type.currentText(), self.method)
-    self.close()
+    self.accept()
 
 
   def save_settings(self):
@@ -103,4 +105,4 @@ class GanPipelineSettingsDialog(QDialog):
       settings.init(image_filepath, self.QSpinBox_stride.value(), self.QSpinBox_crop_size.value(),
                     self.QSpinBox_thresh.value(), self.QSpinBox_alpha.value(),
                     self.QComboBox_type.currentText())
-    self.close()
+    self.accept()
