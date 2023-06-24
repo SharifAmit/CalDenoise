@@ -1,7 +1,7 @@
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QDialog, QGridLayout, QLabel, QHBoxLayout, QSpinBox, \
   QCheckBox, QComboBox, QPushButton
-
+from PyQt5 import QtCore, QtWidgets
 from src.gan_settings import GanSettings
 
 
@@ -21,7 +21,7 @@ class GanPipelineSettingsDialog(QDialog):
     self.method = method
 
     self.hbox_stride = QHBoxLayout()
-    self.Label_stride = QLabel("Stride")
+    self.Label_stride = QLabel("Stride (3-48)")
     self.QSpinBox_stride = QSpinBox()
     self.QSpinBox_stride.setMinimum(3)
     self.QSpinBox_stride.setMaximum(48)
@@ -40,7 +40,7 @@ class GanPipelineSettingsDialog(QDialog):
     self.grid_layout.addWidget(self.QSpinBox_crop_size, 3, 1)
 
     self.hbox_thresh = QHBoxLayout()
-    self.Label_thresh = QLabel("Threshold")
+    self.Label_thresh = QLabel("Threshold (1-254)")
     self.QSpinBox_thresh = QSpinBox()
     self.QSpinBox_thresh.setMinimum(1)
     self.QSpinBox_thresh.setMaximum(254)
@@ -49,10 +49,11 @@ class GanPipelineSettingsDialog(QDialog):
     self.grid_layout.addWidget(self.QSpinBox_thresh, 4, 1)
 
     self.hbox_alpha = QHBoxLayout()
-    self.Label_alpha = QLabel("Alpha")
-    self.QSpinBox_alpha = QSpinBox()
+    self.Label_alpha = QLabel("Alpha (0.1-1.0)")
+    self.QSpinBox_alpha = QtWidgets.QDoubleSpinBox()
     self.QSpinBox_alpha.setMinimum(0.1)
     self.QSpinBox_alpha.setMaximum(1)
+    self.QSpinBox_alpha.setDecimals(1)
     self.QSpinBox_alpha.setSingleStep(0.1)
     self.QSpinBox_alpha.setValue(self.parent().alpha)
     self.grid_layout.addWidget(self.Label_alpha, 5, 0)
