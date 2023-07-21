@@ -1,6 +1,6 @@
 {
     "app": {
-        "base_dir": "/Users/hussein/research/calcium-denoising"
+        "base_dir": "/Users/huss"
     },
     "image_processing": {
         "large_median": 3,
