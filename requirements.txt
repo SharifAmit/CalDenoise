@@ -6,7 +6,3 @@ Pillow==9.0.1
 PyQt5==5.15.6
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.10.1
-psutil==5.9.3
-tqdm==4.64.1
-PIMS==0.6.1
-scikit-image==0.19.2

@@ -429,8 +429,8 @@ class ProgressBar(QDialog, UIForm):
     else:
       pathFolder = str(Path(self.p1.select_path).parent) + "/output"
 
-    self.p1.dirModel_right.ChangeModelPath(pathFolder)
-    self.p1.label_current_dir_right.setText(pathFolder)
+    # self.p1.dirModel_right.ChangeModelPath(pathFolder)
+    # self.p1.label_current_dir_right.setText(pathFolder)
     return super().closeEvent(a0)
 
 
@@ -503,7 +503,7 @@ class CellCAD(QMainWindow):
     # ------------ LEFT DIRECTORY TREE VIEW -----------
     self.treeview = CustomTreeView(
         include=[".jpg", ".png", ".jpeg", ".bmp", ".tif", ".tiff"],
-        exclude=["output"])
+        exclude=[""])
 
     self.dirModel = self.treeview.getModel()
     # self.dirModel.FilterOutFiles()
@@ -522,13 +522,13 @@ class CellCAD(QMainWindow):
     # ----------------------------------------
 
     # ------------ RIGHT DIRECTORY TREE VIEW -----------
-    self.treeview_right = CustomTreeView(
-        include=[".jpg", ".png", ".jpeg", ".bmp", ".tif", ".tiff"])
-    self.dirModel_right = self.treeview_right.getModel()
-    self.treeview_right.doubleClicked.connect(self.treeview_right_doubleClicked)
-    # self.dirModel_right.ChangeModelPath(None)
-    self.treeview_right.header().resizeSection(0,
-                                               self.treeview_right.width() / 3)
+    # self.treeview_right = CustomTreeView(
+    #     include=[".jpg", ".png", ".jpeg", ".bmp", ".tif", ".tiff"])
+    # self.dirModel_right = self.treeview_right.getModel()
+    # self.treeview_right.doubleClicked.connect(self.treeview_right_doubleClicked)
+    # # self.dirModel_right.ChangeModelPath(None)
+    # self.treeview_right.header().resizeSection(0,
+    #                                            self.treeview_right.width() / 3)
     # ----------------------------------------
 
     self.button_home = QPushButton("User Directory")
@@ -564,14 +564,14 @@ class CellCAD(QMainWindow):
     self.vbox_up.addLayout(self.hbox_buttons_tree)
     self.hbox_top_left.addLayout(self.vbox_up)
     self.empty_hbox = QHBoxLayout()
-    self.label_current_dir_right = QLabel()
-    self.label_current_dir_right.setAlignment(Qt.AlignLeft | Qt.AlignBottom)
-    self.empty_hbox.addWidget(self.label_current_dir_right)
+    # self.label_current_dir_right = QLabel()
+    # self.label_current_dir_right.setAlignment(Qt.AlignLeft | Qt.AlignBottom)
+    # self.empty_hbox.addWidget(self.label_current_dir_right)
     self.hbox_top_left.addLayout(self.empty_hbox)
     self.vbox_top.addLayout(self.hbox_top_left)
     hbox_trees = QHBoxLayout()
     hbox_trees.addWidget(self.treeview)
-    hbox_trees.addWidget(self.treeview_right)
+    # hbox_trees.addWidget(self.treeview_right)
     self.vbox_top.addLayout(hbox_trees)
     self.hbox.addLayout(self.vbox_top)
     self.hbox.addWidget(self.window_right)
@@ -610,11 +610,11 @@ class CellCAD(QMainWindow):
     output_path = input_folder_path + "/output"
     self.dirModel.ChangeModelPath(input_folder_path)
     self.label_current_dir.setText(input_folder_path)
-    if os.path.isdir(output_path):
-      self.dirModel_right.ChangeModelPath(output_path)
-      self.label_current_dir_right.setText(output_path)
-    else:
-      self.treeview_right = QTreeView()
+    # if os.path.isdir(output_path):
+      # self.dirModel_right.ChangeModelPath(output_path)
+      # self.label_current_dir_right.setText(output_path)
+    # else:
+    # self.treeview_right = QTreeView()
 
   def return_default(self):
     self.dirModel.ChangeModelPath(self.base_dir)
@@ -680,16 +680,16 @@ class CellCAD(QMainWindow):
   def deleteSelected(self, i):
     if (i.text() == "OK"):
       if (os.path.isdir(self.selected_path)):
-        treeview_right_path = self.dirModel_right.GetRootAbsolutePath()
-        if (self.selected_path == treeview_right_path):
-          self.dirModel_right.ChangeModelPath(None)
-          self.label_current_dir_right.setText("")
+        # treeview_right_path = self.dirModel_right.GetRootAbsolutePath()
+        # if (self.selected_path == treeview_right_path):
+        #   self.dirModel_right.ChangeModelPath(None)
+        #   self.label_current_dir_right.setText("")
         shutil.rmtree(self.selected_path)
       else:
         os.remove(self.selected_path)
       self.select_path = os.path.dirname(self.select_path)
       self.treeview.setRootIndex(self.treeview.rootIndex())
-      self.treeview_right.setRootIndex(self.treeview_right.rootIndex())
+      # self.treeview_right.setRootIndex(self.treeview_right.rootIndex())
 
   def batch_image_processing(self):
     index = self.treeview.currentIndex()
