@@ -824,7 +824,8 @@ class CellCAD(QMainWindow):
                                              progress_bar=self.prog_bar)
     else:
       settings = GanPipelineSettingsDialog(self, True, process=True,
-                                           progress_bar=self.prog_bar)
+                                           progress_bar=self.prog_bar,
+                                           method=method)
     settings.exec_()
     self.prog_bar.show()
     self.thread = MyThread(self.select_path, method)

@@ -16,7 +16,7 @@ class GanSettings:
     return cls.instance
 
   def output_suffix(self):
-    return f'stride{self.stride}_crop{self.crop_size}_tresh{self.thresh}_alpha{self.alpha}_type{self.type}_method{self.method}'
+    return f'stride{self.stride}_crop{self.crop_size}_tresh{self.thresh}_alpha{self.alpha}_type{self.type}'
 
   def process_output_dir(self):
     if (self.method ==Methods.METHOD_GAN_IMG_PROC.value):
