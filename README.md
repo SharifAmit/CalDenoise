@@ -1,6 +1,26 @@
-# Automated denoising of calcium signals using mathematical noise modeling
-We provide a solution for Ca2+ STMap analysis comprised of an automated denoising workflow that effectively removes background image noise and enhances key Ca2+ event parameters in a fast manner. The module includes optimized tools for Ca2+ signal preprocessing and enhancement of Ca2+ signals in a variety of cell types including the Interstitial Cells of Cajal (ICC). The module can accurately detect and subtract image background noise and expeditiously remove STMap noise such as salt-and-pepper, impulsive, and periodic noise. We found that the module speed of analysis of large-datasets was substantially fast (80-90 millisecond/STMap). The automated denoising module also dramatically reduces user error opportunities and provides a consistent method for high-throughput analysis of STMap datasets.
-![](abstract_image.png)
+# Automated Denoising Software for Calcium Imaging Signals Using Deep Learning 
+
+We developed CalDenoise, a software designed to automate the denoising of Ca<sup>2+</sup> Spatio-Temporal Maps (STMaps) to quantify cellular Ca<sup>2+</sup> patterns. The software comprises an image-processing-based pipeline and three generative-adversarial-network-based deep learning models capable of removing various types of noise patterns.
+
+# Summary
+
+Ca<sup>2+</sup> signaling is vital for cell survival and death, and Ca<sup>2+</sup> imaging is a common method to study and measure these cellular patterns. Nevertheless, noise from equipment and experimental protocols can hinder the accurate extraction of Ca<sup>2+</sup> signals from the resulting Spatio-Temporal Maps (STMaps). Current denoising methods for STMaps are often time-consuming and subjective. To address this issue, we've developed CalDenoise, an automated software that utilizes robust image processing and deep learning models to effectively eliminate noise, enhancing Ca<sup>2+</sup> signals in STMaps. The software offers four pipelines for noise removal, covering salt-and-pepper, impulsive, periodic noise, and background noise detection and subtraction. It incorporates three deep learning models capable of handling complex noise patterns and accurately distinguishing boundary noise. CalDenoise is adaptable to various cell types, reducing the potential for user errors through its automated denoising modules. The software also features adjustable parameters and a user-friendly graphical interface for ease of access and utilization.
+
+
+# Highlights
+
+•	CalDenoise: an automated Ca<sup>2+</sup> signals denoising software that effectively removes background image noise.
+
+•	The software features one image-processing pipeline and three GAN models for removing noise from STMaps.
+
+•	CalDenoise: effectively removes STMap noise such as salt-and-pepper, impulsive, and periodic noises.
+
+•	The software enhances the extraction of key Ca<sup>2+</sup> event parameters effectively.
+
+•	The denoising models minimize user error and offer multiple options for end-users to calibrate parameters, enabling efficient denoising of STMap datasets.
+
+![graphical-caldenoise](https://github.com/SharifAmit/CalDenoise/assets/68434296/1fe5108d-7a83-4eb7-bf18-fd4ef434a764)
+
 
 ## Pre-requisite
 - Ubuntu 18.04 / Windows 7 or later
