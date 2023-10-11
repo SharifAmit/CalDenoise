@@ -62,7 +62,7 @@ class GanPipelineSettingsDialog(QDialog):
     self.hbox_type = QHBoxLayout()
     self.Label_type = QLabel("Type")
     self.QComboBox_type = QComboBox()
-    self.QComboBox_type.addItems(['rhythmic','stochastic'])
+    self.QComboBox_type.addItems(['stochastic', 'rhythmic'])
     self.grid_layout.addWidget(self.Label_type, 6, 0)
     self.grid_layout.addWidget(self.QComboBox_type, 6, 1)
 

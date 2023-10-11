@@ -888,40 +888,44 @@ class MyThread(QThread):
     self.method = method
 
   def run(self):
-    if os.getenv('RUN_MODE') != 'STUB':
-      import keras.backend.tensorflow_backend as tb
-      tb._SYMBOLIC_SCOPE.value = True
+    try:
+      if os.getenv('RUN_MODE') != 'STUB':
+        import keras.backend.tensorflow_backend as tb
+        tb._SYMBOLIC_SCOPE.value = True
 
-    if (os.path.isdir(self.folder)):
-      files = os.listdir(self.folder)
-      count_images = 0
-      for file in files:
-        arr_ext = (".jpg", ".jpeg", ".png", ".tif", ".tiff")
-        if (file.endswith(arr_ext)):
-          count_images += 1
-      count = 0
-      for x in os.listdir(self.folder):
-        if (x.endswith(arr_ext)):
-          if (self.method == Methods.METHOD_IMG_PROC.value):
-            denoise_pipeline.process_single_image(self.folder + "/" + x)
-          else:
-            [local_model, global_model] = gan_pipeline.load_models(self.method)
-            gan_pipeline.gan_process_single_image(self.folder + "/" + x,
-                                                  local_model, global_model)
-          self.change_value.emit(count)
-          count += 1
+      if (os.path.isdir(self.folder)):
+        files = os.listdir(self.folder)
+        count_images = 0
+        for file in files:
+          arr_ext = (".jpg", ".jpeg", ".png", ".tif", ".tiff")
+          if (file.endswith(arr_ext)):
+            count_images += 1
+        count = 0
+        for x in os.listdir(self.folder):
+          if (x.endswith(arr_ext)):
+            if (self.method == Methods.METHOD_IMG_PROC.value):
+                denoise_pipeline.process_single_image(self.folder + "/" + x)
+            else:
+              [local_model, global_model] = gan_pipeline.load_models(self.method)
+              gan_pipeline.gan_process_single_image(self.folder + "/" + x,
+                                                    local_model, global_model)
+            self.change_value.emit(count)
+            count += 1
 
-      self.end_value.emit(1)
-    else:
-      if (self.method == Methods.METHOD_IMG_PROC.value):
-        filePath = Path(self.folder);
-        denoise_pipeline.process_single_image(str(filePath.parent) + "/" + filePath.name)
+        self.end_value.emit(1)
       else:
-        [local_model, global_model] = gan_pipeline.load_models(self.method)
-        gan_pipeline.gan_process_single_image(self.folder, local_model, global_model)
-      self.change_value.emit(1)
-      time.sleep(0.5)
+        if (self.method == Methods.METHOD_IMG_PROC.value):
+          filePath = Path(self.folder);
+          denoise_pipeline.process_single_image(str(filePath.parent) + "/" + filePath.name)
+        else:
+          [local_model, global_model] = gan_pipeline.load_models(self.method)
+          gan_pipeline.gan_process_single_image(self.folder, local_model, global_model)
+        self.change_value.emit(1)
+        time.sleep(0.5)
+        self.end_value.emit(1)
+    except Exception as e:
       self.end_value.emit(1)
+      print("Thread Closed")
 
 
 def main():
