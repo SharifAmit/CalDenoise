@@ -14,7 +14,7 @@
 
 We developed CalDenoise, a software designed to automate the denoising of Ca<sup>2+</sup> Spatio-Temporal Maps (STMaps) to quantify cellular Ca<sup>2+</sup> patterns. The software comprises an image-processing-based pipeline and three generative-adversarial-network-based deep learning models capable of removing various types of noise patterns.
 
-![](./docs/images/abstract_image.png)
+![graphical-caldenoise](./docs/images/abstract_image.png)
 
 # Summary
 
@@ -32,8 +32,6 @@ Ca<sup>2+</sup> signaling is vital for cell survival and death, and Ca<sup>2+</s
 •	The software enhances the extraction of key Ca<sup>2+</sup> event parameters effectively.
 
 •	The denoising models minimize user error and offer multiple options for end-users to calibrate parameters, enabling efficient denoising of STMap datasets.
-
-![graphical-caldenoise](https://github.com/SharifAmit/CalDenoise/assets/68434296/1fe5108d-7a83-4eb7-bf18-fd4ef434a764)
 
 # Installation Guide
 This guide will help you install and run our application, Calcium denoise, on Windows, Ubuntu, Arch Linux, and Mac (Intel and M1/M2). Please follow the instructions carefully.
