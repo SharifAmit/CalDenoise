@@ -1,6 +1,6 @@
 {
     "app": {
-        "base_dir": "/Users/huss"
+        "base_dir": "/Users/huss/dev/research/CalDenoise/test"
     },
     "image_processing": {
         "large_median": 3,
