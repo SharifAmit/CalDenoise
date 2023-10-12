@@ -136,12 +136,22 @@ The software features one image-processing pipeline and three GAN models for rem
 
 
 ### Batch Processing:
-![](docs/Image_Segmentation.png)
+
+To batch process multiple images, 1) simply select a folder containing your input images, 2) select your denoising pipeline (algorithm) and 3) click apply
+![](./docs/images/batch_processing.png)
 
 ### Single Image Processing
-![](docs/4SM_stochastic.png)
+To process a single images, 1) select your input images, 2) select your denoising pipeline (algorithm) and 3) click apply
 
+![](./docs/images/single_image_processing.png)
 
+### Output
+By default, the software saves the denoised image and intermediary images into a folder named: "output".
+The denoised images are organized in sub-folders in the main "output" folder. The name of the sub-folders contains the selected denoise pipeline and the specified input parameters.
+
+The software provides an easy way to explore the input/output folders containing the images. Double-clicking on an image will display the image as shown below:
+
+![](./docs/images/output_1.png)
 
 # License
 The code is released under the GPL-2 License, you can read the license file included in the repository for details.
