@@ -111,7 +111,7 @@ If you encountered issue running the batch/zsh/sh scripts, you can manually star
 by activating the conda env first, and then run the python based application
 
 ```
-conda actibate ./4conda
+conda activate ./4conda
 ```
 
 ```
