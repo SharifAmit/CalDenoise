@@ -106,6 +106,18 @@ Windows users should run this command:
 ```bat
 ./run_windows.bat
 ```
+
+If you encountered issue running the batch/zsh/sh scripts, you can manually start the application
+by activating the conda env first, and then run the python based application
+
+```
+conda actibate ./4conda
+```
+
+```
+python ./src/cal_denoise_app.py
+```
+
 Now, Calcium denoise should be up and running on your machine!
 
 ![](./docs/images/cal_denoise_software.png)
