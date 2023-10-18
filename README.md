@@ -6,6 +6,7 @@
   <a href="#installation-guide"><b>Installation Guide</b></a> |
   <a href="#usage"><b>Usage Guide</b></a> |
   <a href="https://github.com/SharifAmit/CalDenoise/tree/master/test/"><b>Test Dataset</b></a> |
+  <a href="https://youtu.be/Rho79Cywbqc" target="CalDenoise tutorial"><b>CalDenoise Installation and Demo on YouTube</b></a>
 </div>
 
 <br/>
