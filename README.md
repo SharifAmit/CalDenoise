@@ -112,8 +112,7 @@ Mac  users should run this command:
 ./run_mac.sh
 ```
 
-If you encountered issue running the batch/zsh/sh scripts, you can manually start the application
-by activating the conda env first:
+If you encountered issue running th bach/zsh/sh scripts, you can manually start the application by activating the conda env first:
 
 ```
 conda activate ./4conda
