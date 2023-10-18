@@ -100,7 +100,7 @@ Run the following command:
 To run the application on macOS or linux, execute the following command:
 
 ```bash
-./run_gpu_linux.sh
+./run_gpu_linux_mac.sh
 ```
 Windows users should run this command:
 ```bat
