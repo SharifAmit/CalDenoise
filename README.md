@@ -93,30 +93,33 @@ Users on other platforms can skip this step.
 ### Mac (Intel & M1/M2) users
 Run the following command:
 ```bash
-./install_m1m2.sh
+./install_mac.sh
 ```
 
 ### Running the Application
 To run the application on macOS or linux, execute the following command:
 
-```bash
-./run_gpu_linux_mac.sh
+```
+./run_linux.sh
 ```
 Windows users should run this command:
-```bat
+```
 ./run_windows.bat
 ```
 
+Mac  users should run this command:
+```
+./run_mac.sh
+```
+
 If you encountered issue running the batch/zsh/sh scripts, you can manually start the application
-by activating the conda env first, and then run the python based application
+by activating the conda env first:
 
 ```
 conda activate ./4conda
 ```
 
-```
-python ./src/cal_denoise_app.py
-```
+after activate Conda env, you can re-run the corresponding run script
 
 Now, Calcium denoise should be up and running on your machine!
 
