@@ -118,7 +118,7 @@ If you encountered issue running th bach/zsh/sh scripts, you can manually start 
 conda activate ./4conda
 ```
 
-after activate Conda env, you can re-run the corresponding run script
+after activating the Conda env, you can re-run the corresponding run script
 
 Now, Calcium denoise should be up and running on your machine!
 
